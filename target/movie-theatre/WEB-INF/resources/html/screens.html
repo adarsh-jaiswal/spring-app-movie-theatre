@@ -1,0 +1,92 @@
+<div class="container-fluid">
+    <div class="row content">
+        <div class="col-sm-2 navbar navbar-default navbar-fixed-side">
+            <h4>Welcome {{userDetails.name}}</h4>
+            <ul class="nav nav-pills nav-stacked">
+                <li><button type="button" class="btn btn-link" ng-click="divPartition(0)">Options</button></li>
+                <li><button type="button" class="btn btn-link" ng-click="divPartition(1)">Select Screens</button></li>
+                <li><button type="button" class="btn btn-link" ng-click="divPartition(2)">Save Screens</button></li>
+                <li><button type="button" class="btn btn-link" ng-click="divPartition(3)">Available Seats</button></li>
+                <li><button type="button" class="btn btn-link" ng-click="divPartition(4)">Find Available Seats</button></li>
+                <li><button type="button" class="btn btn-link" ng-click="divPartition(5)">Reserve</button></li>
+
+            </ul>
+            <br>
+
+        </div>
+        <div class="col-sm-2">
+            <div class="alert alert-info" ng-show="selectedScreen!=''">
+                <strong> Selected Screen-{{selectedScreen}}</strong>
+            </div>
+
+        </div>
+        <div class="col-sm-8">
+            <div ng-show="divPart==1">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>Select Screen :</h4>
+                        <select class="form-control" ng-click="divPartition(1)" ng-model="selectedScreen">
+                            <option ng-repeat="x in allScreens" value="{{x}}">{{x}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="divPart == 2">
+                <form class="form-horizontal">
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <label for="testJson">Enter Json:</label>
+                            <textarea class="form-control" ng-model="screenDetailsJson" id="testJson" rows="3"></textarea>
+                            <button type="button" class="btn btn-info" ng-click="saveScreenDetails();">SAVE</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="divPart == 3">
+                <div class="form-group">
+                    <label for="testJson">Result Json:</label>
+                    <textarea class="form-control" ng-model="availableSeatsJson" id="testJson" rows="3"></textarea>
+                </div>
+            </div>
+            <div ng-show="divPart == 4">
+            <div class ="row">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="numberOfSeats">Enter Number of Seats:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="numberOfSeats" ng-model="numberOfSeats">
+                    </div>
+                    <label class="control-label col-sm-4" for="choice">Enter Seat Choice:</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" id="choice" ng-model="choice">
+                    </div>
+
+                </div>
+                </div>
+                <div class ="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-5">
+                <button type="button" class="btn btn-info" ng-click="findCustomSeatDetails();">FIND</button>
+                </div>
+                </div>
+                <div class ="row">
+                <div class="form-group">
+                    <label for="testJson">Result Json:</label>
+                    <textarea class="form-control" ng-model="customAvailableSeatsJson" id="testJson" rows="3"></textarea>
+                </div>
+                </div>
+            </div>
+            <div ng-show="divPart == 5">
+                <div class="form-group">
+                    <label for="testJson">Enter Json:</label>
+                    <textarea class="form-control" ng-model="reserveSeatsJson" id="testJson" rows="3"></textarea>
+                    <button type="button" class="btn btn-info" ng-click="reserveSeatDetails();">RESERVE</button>
+                </div>
+            </div>
+            <div ng-show="divPart == 6">
+                <div class="alert alert-warning">
+                    <strong> You should Select The Screen First</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
